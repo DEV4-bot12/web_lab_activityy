@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wild Trails | Adventure & Trekking</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:#101612;color:#f5f5ed}
+:root{--green:#b5d47c;--dark:#101612;--panel:#1b251e;--muted:#aab4a9}
+a{text-decoration:none;color:inherit}
+button{font:inherit;cursor:pointer}
+nav{height:76px;padding:0 7%;display:flex;align-items:center;justify-content:space-between;background:#101612;position:sticky;top:0;z-index:10;border-bottom:1px solid #ffffff16}
+.logo{font-family:Oswald;font-size:27px;letter-spacing:2px}
+.logo span{color:var(--green)}
+.navlinks{display:flex;gap:25px;font-size:13px;color:#c3ccc1}
+.navlinks a:hover{color:var(--green)}
+.navbtn,.primary{background:var(--green);color:#142016;padding:13px 22px;border:0;border-radius:5px;font-weight:800}
+.menu{display:none;background:none;color:white;border:0;font-size:25px}
+.hero{min-height:650px;display:flex;align-items:center;padding:90px 9%;background:linear-gradient(90deg,#0a100bdc 0%,#0a100b65 65%,#0a100b30),url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1800') center/cover}
+.hero-content{max-width:700px}
+.eyebrow{color:var(--green);font-size:12px;font-weight:800;letter-spacing:3px;margin-bottom:20px}
+h1,h2,h3{font-family:Oswald,sans-serif;text-transform:uppercase}
+h1{font-size:clamp(55px,8vw,100px);line-height:1.04}
+h1 span{color:var(--green)}
+.hero p{color:#d5ddd3;line-height:1.8;max-width:520px;margin:23px 0 30px}
+.secondary{border:1px solid #ffffff80;background:transparent;color:white;padding:13px 22px;border-radius:5px;margin-left:10px}
+.stats{display:flex;gap:55px;margin-top:55px}
+.stat strong{display:block;font-family:Oswald;font-size:28px;color:var(--green)}
+.stat small{color:#d0d7cd}
+section{padding:90px 8%}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:35px}
+h2{font-size:42px}
+.section-head p,.muted{color:var(--muted);font-size:14px;line-height:1.7}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{background:var(--panel);border-radius:10px;overflow:hidden;border:1px solid #ffffff0e}
+.card img{width:100%;height:230px;object-fit:cover;display:block;transition:.4s}
+.card:hover img{transform:scale(1.04)}
+.image-wrap{position:relative;overflow:hidden}
+.tag{position:absolute;top:15px;left:15px;background:var(--green);color:#182019;padding:7px 12px;font-size:11px;font-weight:800;border-radius:3px}
+.card-body{padding:23px}
+.card h3{font-size:24px;margin-bottom:10px}
+.card p{font-size:13px;color:var(--muted);line-height:1.7}
+.meta{display:flex;justify-content:space-between;margin:18px 0;color:#d3dbd1;font-size:12px}
+.price{color:var(--green);font-weight:800;font-size:19px}
+.card button{width:100%;padding:12px;border:1px solid #718269;background:transparent;color:var(--green);border-radius:4px}
+.card button:hover{background:var(--green);color:#142016}
+.camping{background:#18251b}
+.camp-banner{min-height:370px;border-radius:12px;padding:50px;display:flex;align-items:center;background:linear-gradient(90deg,#09130cdd,#09130c30),url('https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=1600') center/cover}
+.camp-banner div{max-width:500px}
+.camp-banner h2{font-size:48px}
+.camp-banner p{color:#d5ddd3;line-height:1.8;margin:15px 0 25px}
+.schedule{background:#111a14}
+table{width:100%;border-collapse:collapse;margin-top:25px}
+th,td{text-align:left;padding:20px 14px;border-bottom:1px solid #ffffff18;font-size:13px}
+th{color:var(--green);font-size:11px;letter-spacing:1px}
+td{color:#d1d9d0}
+.level{padding:6px 10px;border-radius:4px;background:#34462f;color:#c5e29a;font-size:11px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:start}
+.checklist{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:25px}
+.check{background:var(--panel);padding:14px;border-radius:5px;font-size:13px;color:#dce3d9}
+.check input{accent-color:var(--green);margin-right:8px}
+.progress{height:7px;background:#303a30;border-radius:10px;margin-top:20px;overflow:hidden}
+.progress div{height:100%;background:var(--green);width:0%;transition:.3s}
+.safety-list{list-style:none;margin-top:25px}
+.safety-list li{padding:15px 0;border-bottom:1px solid #ffffff18;color:#d1d9d0;font-size:14px;line-height:1.6}
+.safety-list li span{color:var(--green);margin-right:10px;font-weight:bold}
+.booking{background:#18251b}
+.booking-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px}
+.booking-box{background:#101612;padding:30px;border-radius:10px}
+.booking-box h3{font-size:28px;margin-bottom:25px}
+form{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+form input,form select,form textarea{width:100%;padding:14px;background:#202b23;color:white;border:1px solid #38453a;border-radius:5px;font:inherit;font-size:13px}
+form textarea{grid-column:span 2;resize:vertical}
+form button{grid-column:span 2}
+.full{grid-column:span 2}
+footer{padding:40px 8%;display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:12px;border-top:1px solid #ffffff15}
+footer strong{color:var(--green)}
+#message{margin-top:15px;color:var(--green);font-size:13px}
+@media(max-width:800px){
+.navlinks{display:none;position:absolute;top:76px;left:0;width:100%;background:#101612;padding:25px;flex-direction:column}
+.navlinks.open{display:flex}.menu{display:block}.navbtn{display:none}
+.cards{grid-template-columns:1fr 1fr}
+.two-col,.booking-grid{grid-template-columns:1fr}
+.hero{min-height:600px;padding:70px 7%}
+.stats{gap:25px;flex-wrap:wrap}
+}
+@media(max-width:550px){
+.cards{grid-template-columns:1fr}
+section{padding:65px 6%}
+h2{font-size:34px}
+.section-head{display:block}
+.camp-banner{padding:30px}
+.camp-banner h2{font-size:38px}
+.checklist{grid-template-columns:1fr}
+table{min-width:600px}
+.table-scroll{overflow-x:auto}
+footer{flex-direction:column}
+form{grid-template-columns:1fr}
+form input,form select,form textarea,form button{grid-column:span 1}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <a href="#home" class="logo">WILD<span>TRAILS.</span></a>
+  <div class="navlinks" id="navlinks">
+    <a href="#home">HOME</a>
+    <a href="#treks">TREKKING</a>
+    <a href="#camping">CAMPING</a>
+    <a href="#schedule">SCHEDULE</a>
+    <a href="#safety">SAFETY</a>
+    <a href="#packages">PACKAGES</a>
+  </div>
+  <a href="#booking" class="navbtn">BOOK A TRIP ↗</a>
+  <button class="menu" onclick="toggleMenu()">☰</button>
+</nav>
+
+<header class="hero" id="home">
+  <div class="hero-content">
+    <div class="eyebrow">YOUR NEXT ADVENTURE STARTS HERE</div>
+    <h1>FIND YOUR<br><span>WILD SIDE.</span></h1>
+    <p>Escape the ordinary. Discover breathtaking mountain trails, magical camping nights and unforgettable adventures with Wild Trails.</p>
+    <a href="#treks" class="primary">EXPLORE TREKS ↗</a>
+    <a href="#camping" class="secondary">CAMPING TRIPS</a>
+    <div class="stats">
+      <div class="stat"><strong>25+</strong><small>Adventure Routes</small></div>
+      <div class="stat"><strong>1.2K+</strong><small>Happy Explorers</small></div>
+      <div class="stat"><strong>15+</strong><small>Expert Guides</small></div>
+    </div>
+  </div>
+</header>
+
+<section id="treks">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">CHOOSE YOUR PATH</div>
+      <h2>POPULAR TREKKING ROUTES</h2>
+    </div>
+    <p>From peaceful forest walks to<br>challenging mountain adventures.</p>
+  </div>
+
+  <div class="cards">
+    <article class="card">
+      <div class="image-wrap">
+        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800" alt="Himalayan mountain trek">
+        <span class="tag">MODERATE</span>
+      </div>
+      <div class="card-body">
+        <h3>HIMALAYAN ESCAPE</h3>
+        <p>Experience stunning mountain views and peaceful alpine landscapes.</p>
+        <div class="meta"><span>📍 Himachal Pradesh</span><span>4 Days</span></div>
+        <div class="meta"><span>Difficulty: 3/5</span><span class="price">₹6,499</span></div>
+        <button onclick="book('Himalayan Escape')">BOOK THIS TREK ↗</button>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="image-wrap">
+        <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800" alt="Mountain summit">
+        <span class="tag">CHALLENGING</span>
+      </div>
+      <div class="card-body">
+        <h3>SNOW PEAK ADVENTURE</h3>
+        <p>Discover dramatic snowy peaks and beautiful high-altitude scenery.</p>
+        <div class="meta"><span>📍 Uttarakhand</span><span>6 Days</span></div>
+        <div class="meta"><span>Difficulty: 5/5</span><span class="price">₹9,999</span></div>
+        <button onclick="book('Snow Peak Adventure')">BOOK THIS TREK ↗</button>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="image-wrap">
+        <img src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?w=800" alt="Forest hiking route">
+        <span class="tag">EASY</span>
+      </div>
+      <div class="card-body">
+        <h3>GREEN FOREST TRAIL</h3>
+        <p>Enjoy refreshing forest paths, waterfalls and beautiful nature.</p>
+        <div class="meta"><span>📍 Coorg, Karnataka</span><span>2 Days</span></div>
+        <div class="meta"><span>Difficulty: 1/5</span><span class="price">₹3,499</span></div>
+        <button onclick="book('Green Forest Trail')">BOOK THIS TREK ↗</button>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="camping" id="camping">
+  <div class="camp-banner">
+    <div>
+      <div class="eyebrow">SLEEP UNDER THE STARS</div>
+      <h2>MORE THAN JUST A CAMPING TRIP.</h2>
+      <p>Experience bonfires, mountain sunsets, outdoor activities and peaceful nights surrounded by nature.</p>
+      <a href="#packages" class="primary">EXPLORE CAMPING ↗</a>
+    </div>
+  </div>
+</section>
+
+<section class="schedule" id="schedule">
+  <div class="eyebrow">PLAN YOUR JOURNEY</div>
+  <h2>UPCOMING TRIP SCHEDULE</h2>
+  <p class="muted">Sample upcoming adventure dates. Confirm actual availability before booking.</p>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>DESTINATION</th><th>DATE</th><th>DURATION</th><th>DIFFICULTY</th><th>PRICE</th></tr></thead>
+      <tbody>
+        <tr><td>Himalayan Escape</td><td>05 Dec 2026</td><td>4 Days</td><td><span class="level">Moderate</span></td><td>₹6,499</td></tr>
+        <tr><td>Snow Peak Adventure</td><td>12 Dec 2026</td><td>6 Days</td><td><span class="level">Hard</span></td><td>₹9,999</td></tr>
+        <tr><td>Green Forest Trail</td><td>19 Dec 2026</td><td>2 Days</td><td><span class="level">Easy</span></td><td>₹3,499</td></tr>
+        <tr><td>Starry Night Camping</td><td>26 Dec 2026</td><td>2 Days</td><td><span class="level">Easy</span></td><td>₹2,499</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="two-col">
+    <div>
+      <div class="eyebrow">BE PREPARED</div>
+      <h2>YOUR ADVENTURE CHECKLIST</h2>
+      <p class="muted">Tick off your essential equipment before heading out.</p>
+      <div class="checklist" id="checklist">
+        <label class="check"><input type="checkbox"> Trekking shoes</label>
+        <label class="check"><input type="checkbox"> Backpack</label>
+        <label class="check"><input type="checkbox"> Water bottle</label>
+        <label class="check"><input type="checkbox"> First aid kit</label>
+        <label class="check"><input type="checkbox"> Warm clothing</label>
+        <label class="check"><input type="checkbox"> Rain jacket</label>
+        <label class="check"><input type="checkbox"> Flashlight</label>
+        <label class="check"><input type="checkbox"> Snacks</label>
+        <label class="check"><input type="checkbox"> Navigation map</label>
+        <label class="check"><input type="checkbox"> Sunscreen</label>
+      </div>
+      <p class="muted" id="count" style="margin-top:15px">0 / 10 items packed</p>
+      <div class="progress"><div id="progress"></div></div>
+    </div>
+
+    <div id="safety">
+      <div class="eyebrow">ADVENTURE RESPONSIBLY</div>
+      <h2>SAFETY COMES FIRST</h2>
+      <p class="muted">A great adventure begins with preparation and responsible decisions.</p>
+      <ul class="safety-list">
+        <li><span>01 /</span> Always trek with a qualified guide or suitable group.</li>
+        <li><span>02 /</span> Check weather forecasts before starting your trip.</li>
+        <li><span>03 /</span> Carry sufficient drinking water and essential supplies.</li>
+        <li><span>04 /</span> Stay on marked trails and follow local instructions.</li>
+        <li><span>05 /</span> Share your itinerary and emergency contacts.</li>
+        <li><span>06 /</span> Respect wildlife and leave no waste behind.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="packages" class="booking">
+  <div class="eyebrow">CHOOSE YOUR EXPERIENCE</div>
+  <h2>ADVENTURE PACKAGES</h2>
+  <p class="muted">Example package prices per person. Check inclusions and availability before confirming.</p>
+  <div class="cards" style="margin-top:35px">
+    <article class="card">
+      <div class="card-body">
+        <div class="eyebrow">STARTER</div>
+        <h3>DAY EXPLORER</h3>
+        <div class="price">₹1,499 <small class="muted">/ person</small></div>
+        <p style="margin:20px 0">✓ Guided day hike<br><br>✓ Basic refreshments<br><br>✓ First aid support<br><br>✓ Group activities</p>
+        <button onclick="book('Day Explorer')">CHOOSE PACKAGE</button>
+      </div>
+    </article>
+    <article class="card" style="border:1px solid #b5d47c">
+      <div class="card-body">
+        <div class="eyebrow">MOST POPULAR</div>
+        <h3>WILD CAMPER</h3>
+        <div class="price">₹3,499 <small class="muted">/ person</small></div>
+        <p style="margin:20px 0">✓ 2-day camping experience<br><br>✓ Tent accommodation<br><br>✓ Meals as specified<br><br>✓ Guided activities<br><br>✓ Basic first aid support</p>
+        <button onclick="book('Wild Camper')">CHOOSE PACKAGE</button>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-body">
+        <div class="eyebrow">PREMIUM</div>
+        <h3>SUMMIT SEEKER</h3>
+        <div class="price">₹8,999 <small class="muted">/ person</small></div>
+        <p style="margin:20px 0">✓ Multi-day guided trek<br><br>✓ Camping accommodation<br><br>✓ Planned meals<br><br>✓ Experienced trek leader<br><br>✓ Emergency support plan</p>
+        <button onclick="book('Summit Seeker')">CHOOSE PACKAGE</button>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="booking">
+  <div class="booking-grid">
+    <div>
+      <div class="eyebrow">LET THE JOURNEY BEGIN</div>
+      <h2>READY FOR YOUR NEXT ADVENTURE?</h2>
+      <p class="muted" style="margin-top:20px">Choose your destination, select your trip and send us your booking enquiry.</p>
+    </div>
+    <div class="booking-box">
+      <h3>BOOK YOUR ADVENTURE</h3>
+      <form id="bookingForm">
+        <input type="text" id="name" placeholder="Your full name" required>
+        <input type="email" id="email" placeholder="Email address" required>
+        <select id="trip" required>
+          <option value="">Select a trip</option>
+          <option>Himalayan Escape</option>
+          <option>Snow Peak Adventure</option>
+          <option>Green Forest Trail</option>
+          <option>Starry Night Camping</option>
+          <option>Day Explorer</option>
+          <option>Wild Camper</option>
+          <option>Summit Seeker</option>
+        </select>
+        <input type="number" id="people" min="1" max="20" placeholder="Number of people" required>
+        <textarea id="notes" rows="3" placeholder="Your message (optional)"></textarea>
+        <button class="primary" type="submit">SUBMIT ENQUIRY ↗</button>
+      </form>
+      <p id="message" role="status"></p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <a href="#home" class="logo">WILD<span>TRAILS.</span></a>
+  <p>© 2026 Wild Trails. Explore responsibly.</p>
+  <p>MADE FOR THE LOVE OF ADVENTURE 🌲</p>
+</footer>
+
+<script>
+function toggleMenu(){
+  document.getElementById('navlinks').classList.toggle('open');
+}
+
+document.querySelectorAll('.navlinks a').forEach(link=>{
+  link.addEventListener('click',()=>{
+    document.getElementById('navlinks').classList.remove('open');
+  });
+});
+
+function book(trip){
+  document.getElementById('trip').value=trip;
+  document.getElementById('booking').scrollIntoView({behavior:'smooth'});
+}
+
+const checks=[...document.querySelectorAll('#checklist input')];
+checks.forEach(check=>{
+  check.addEventListener('change',()=>{
+    const total=checks.filter(c=>c.checked).length;
+    document.getElementById('count').textContent=
+      total+' / '+checks.length+' items packed';
+    document.getElementById('progress').style.width=
+      (total/checks.length*100)+'%';
+  });
+});
+
+document.getElementById('bookingForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  const name=document.getElementById('name').value;
+  const trip=document.getElementById('trip').value;
+  document.getElementById('message').textContent=
+    'Thank you, '+name+'! Your enquiry for '+trip+
+    ' has been recorded in this demo.';
+  this.reset();
+});
+</script>
+
+</body>
+</html>
